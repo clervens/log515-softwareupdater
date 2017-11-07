@@ -1,0 +1,23 @@
+{
+  "name": "software-updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "electron --inspect=5858 ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clervens/log515-softwareupdater.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clervens/log515-softwareupdater/issues"
+  },
+  "homepage": "https://github.com/clervens/log515-softwareupdater#readme",
+  "devDependencies": {
+    "electron": "1.7.9"
+  }
+}
