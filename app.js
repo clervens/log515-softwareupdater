@@ -1,4 +1,6 @@
 const path = require('path');
+const ApplicationManager = require('./model/ApplicationManager');
+
 const mb = require('menubar')({
   transparent: true,
   preloadWindow: true,
@@ -8,7 +10,8 @@ const mb = require('menubar')({
 });
 
 mb.on('ready', () => {
-  console.log('Menubar electron app is ready')
+  console.log('Menubar electron app is ready');
+  //ApplicationManager.get().then(console.log);
 });
 
 mb.on('window-all-closed', () => {
