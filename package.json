@@ -19,5 +19,8 @@
   "homepage": "https://github.com/clervens/log515-softwareupdater#readme",
   "devDependencies": {
     "electron": "1.7.9"
+  },
+  "dependencies": {
+    "menubar": "^5.2.3"
   }
 }
