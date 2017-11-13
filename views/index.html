@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>Software Updater</title>
+	  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/style.css">
   </head>
   <body class="carret">
     <div class="page">
         <h1>Software Updater</h1>
         <!--https://icons8.com/cssload/-->
-        <div id="loading"> 
+        <div id="loading">
             <p>Loading installed application</p>
             <div id="escapingBallG">
                 <div id="escapingBall_1" class="escapingBallG"></div>
@@ -17,6 +18,16 @@
         </div>
         <ul id="applicationList"></ul>
     </div>
+    <script>
+        if (window.require) {
+            window.$ = window.jQuery = require("jquery");
+        }
+    </script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <!--
+    <script src="../node_modules/popper/dist/popper.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    -->
     <script src="../assets/index.js"></script>
   </body>
 </html>

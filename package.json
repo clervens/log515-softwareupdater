@@ -21,6 +21,8 @@
     "electron": "1.7.9"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "menubar": "^5.2.3",
     "wmic-js": "0.0.3"
   }
