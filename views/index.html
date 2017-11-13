@@ -2,18 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Software Updater</title>
     <link rel="stylesheet" href="../assets/style.css">
   </head>
   <body class="carret">
     <div class="page">
-        <h1>Hello World!</h1>
-        We are using node <script>document.write(process.versions.node)</script>,
-        Chrome <script>document.write(process.versions.chrome)</script>,
-        and Electron <script>document.write(process.versions.electron)</script>.
-        <ul id="applicationList">
-
-        </ul>
+        <h1>Software Updater</h1>
+        <!--https://icons8.com/cssload/-->
+        <div id="loading"> 
+            <p>Loading installed application</p>
+            <div id="escapingBallG">
+                <div id="escapingBall_1" class="escapingBallG"></div>
+            </div>
+        </div>
+        <ul id="applicationList"></ul>
     </div>
     <script src="../assets/index.js"></script>
   </body>
