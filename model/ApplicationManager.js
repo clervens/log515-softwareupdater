@@ -1,8 +1,8 @@
-const wmic = require('wmic-js'),
-      currentWindow = require('electron').remote.getCurrentWindow();
+const wmic = require('wmic-js');
 
 module.exports = class ApplicationManager {
   static get(){
+    //TODO add merge with the new information about the update
     if (process.platform == 'darwin')
       return Promise.resolve([{
         Name: "123 app technique.",
@@ -11,17 +11,6 @@ module.exports = class ApplicationManager {
     return wmic().alias('product').find().get().catch((e) => {
       console.log('An error occurred while trying to fetch applications list\n'
           + 'Check if you\'re on the right OS (Windows only).');
-    });
-  }
-
-  static sendNotification(title, description) {
-    // Skip notifications if the app view is open.
-    if (currentWindow.isVisible())
-      return;
-
-    let newNotification = new Notification(title, {
-      body: description,
-      icon: "../assets/img/if_Download_drive_data_data_storage_hdd_hard_to_1886949.png"
     });
   }
 }
