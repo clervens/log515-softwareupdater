@@ -1,5 +1,6 @@
 const ApplicationManager = require('../model/ApplicationManager'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    dialog = require('electron').remote.dialog;
 let applicationList = [];
 
 let body = document.getElementsByTagName('body')[0];
@@ -15,7 +16,8 @@ ApplicationManager.get().then((appList) => {
 $(htmlList).on('click', 'li .versionavailable button', (event) => {
     let $progress = $(event.target).parents('li').find('.progress');
     let $progressBar = $progress.find('.progress-bar');
-    let appId = $(event.target).parents('li').attr('id');
+    let appId = $(event.target).parents('li').attr('id').trim();
+    let version = $(event.target).parents('li').find('.appversion').text().trim();
     $progress.css('display', 'block');
 
     let percent = 0;
@@ -29,6 +31,15 @@ $(htmlList).on('click', 'li .versionavailable button', (event) => {
             $progress.fadeOut('slow',null,() => {
                 $progressBar.css('width', `0%`);
             });
+
+            // Switch icon to save update to dir to install.
+            /*dialog.showSaveDialog(null, {
+                title: 'test',
+                defaultPath: `${appId} - ${version}.zip`
+            },(filename) => {
+
+            });*/
+
             ApplicationManager.sendNotification('Software update',
                 `An new version of ${appId} has been successfully downloaded.`);
         }
