@@ -15,12 +15,24 @@ ApplicationManager.get().then((appList) => {
 $(htmlList).on('click', 'li .versionavailable button', (event) => {
     let $progress = $(event.target).parents('li').find('.progress');
     let $progressBar = $progress.find('.progress-bar');
+    let appId = $(event.target).parents('li').attr('id');
     $progress.css('display', 'block');
 
-    // Change for loop until completed.
-    $progressBar.css('width', '90%');
+    let percent = 0;
+    let intervalId = setInterval(() => {
+        percent += Math.random()*30;
+        percent = Math.min(percent, 100);
+        $progressBar.css('width', `${percent}%`);
 
-    let appId = $(event.target).parents('li').attr('id');
+        if (percent >= 100) {
+            clearInterval(intervalId);
+            $progress.fadeOut('slow',null,() => {
+                $progressBar.css('width', `0%`);
+            });
+            ApplicationManager.sendNotification('Software update',
+                `An new version of ${appId} has been successfully downloaded.`);
+        }
+    }, 500);
 
    console.log("onclick: " + appId);
 });
