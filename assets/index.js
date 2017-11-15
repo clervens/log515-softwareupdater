@@ -3,7 +3,9 @@ const ApplicationManager = require('../model/ApplicationManager'),
     _ = require('lodash'),
     dialog = require('electron').remote.dialog,
     config = require('config'),
-    path = require('path');
+    path = require('path'),
+    merge = require('merge'),
+    spawn = require('child_process').spawn;
 
 let applicationList = [];
 
@@ -64,6 +66,7 @@ ApplicationManager.get().then((appList) => {
 
       $(htmlList).on('click', 'li .versionavailable button.btnexecute', (event) => {
         //todo
+        //spawn(path, args);
         console.log("click btnexecute");
       });
 
