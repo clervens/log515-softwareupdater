@@ -4,13 +4,27 @@ const ApplicationManager = require('../model/ApplicationManager'),
     dialog = require('electron').remote.dialog,
     config = require('config'),
     path = require('path'),
-    merge = require('merge'),
-    spawn = require('child_process').spawn;
+    spawn = require('child_process').spawn,
+    os = require('os'),
+    fs = require('fs');
 
 let applicationList = [];
 
 let body = document.getElementsByTagName('body')[0];
 body.classList.add(process.platform);
+
+function getApplicationById(appId){
+  if(applicationList){
+    for(let i=0; i< applicationList.length; i++){
+        let el = applicationList[i];
+        if(!el || !el.Name) continue;
+        if(el.appId === appId){
+          return el;
+        }
+      }
+    }
+    return null;
+}
 
 ApplicationManager.get().then((appList) => {
   if(appList === null)
@@ -27,8 +41,16 @@ ApplicationManager.get().then((appList) => {
       //it's important to keep information on the main object
       el.appId = el.Name.replace(/\s+/g, '_');
       let appItem = appListTemplate(el);
-      //Show item only if new version if available
       $(htmlList).append(appItem);
+
+      //Show item only if new version if available
+      ApplicationManager.getUpdateInformation(el.Name).then(function (updateInfo){
+        if(updateInfo !== null && el.Version !== updateInfo.Version){
+          el.updateInfo = updateInfo;
+          //TODO afficher new version
+          $(htmlList).find('li#'+el.appId+' .versionavailable button').addClass('btndownload');
+        }
+      });
   }
 
   $(htmlList).on('click', 'li .versionavailable button.btndownload', (event) => {
@@ -36,12 +58,34 @@ ApplicationManager.get().then((appList) => {
       let $progressBar = $progress.find('.progress-bar');
       let appId = $(event.target).parents('li').attr('id').trim();
       let version = $(event.target).parents('li').find('.appversion').text().trim();
+      let app = getApplicationById(appId);
+      let platform = os.platform();
+      let arch = os.arch();
       $(event.target).prop("disabled",true);
-      $progress.css('display', 'block');
 
+      if(!app || !app.updateInfo){
+        $(event.target).removeClass('btndownload');
+        $(event.target).prop("disabled",false);
+        return;
+      }
+
+      app.downloadInfo = {
+        url:app.updateInfo.getUrl(platform, arch),
+        isFinish: false
+      };
+
+      if(!app.downloadInfo.url){
+        $(event.target).removeClass('btndownload');
+        $(event.target).prop("disabled",false);
+        app.downloadInfo = null;
+        console.log("Cannot find url for this update" + appId);
+        return;
+      }
+
+      $progress.css('display', 'block');
       //TODO remove the static url to dynamic content
-      let destinationfilePath = path.join(dowloadedAppPath, "blender-2.79-windows64.msi");
-      DownloadManager.get("http://download.blender.org/release/Blender2.79/blender-2.79-windows64.msi", destinationfilePath, (status, error) => {
+      app.downloadInfo.destinationfilePath = path.join(dowloadedAppPath, path.basename(app.downloadInfo.url));
+      DownloadManager.get(app.downloadInfo.url, app.downloadInfo.destinationfilePath, (status, error) => {
           $progressBar.css('width', `${status.percent}%`);
 
           if (status.percent >= 100) {
@@ -56,7 +100,7 @@ ApplicationManager.get().then((appList) => {
               },(filename) => {
 
               });*/
-
+              app.downloadInfo.isFinish = true;
               DownloadManager.sendNotification('Software update',
                   `An new version of ${appId} has been successfully downloaded.`);
               $(event.target).removeClass('btndownload').addClass('btnexecute');
@@ -65,8 +109,20 @@ ApplicationManager.get().then((appList) => {
       });
 
       $(htmlList).on('click', 'li .versionavailable button.btnexecute', (event) => {
-        //todo
-        //spawn(path, args);
+        let appId = $(event.target).parents('li').attr('id').trim();
+        let app = getApplicationById(appId);
+        $(event.target).prop("disabled",true);
+
+        if(!app || !app.downloadInfo || !app.downloadInfo.isFinish || !fs.existsSync(app.downloadInfo.destinationfilePath)){
+          $(event.target).removeClass('btnexecute');
+          $(event.target).prop("disabled",false);
+          return;
+        }
+
+        var child = spawn(app.downloadInfo.destinationfilePath, []);
+        child.on('exit', function(code) {
+            //todo
+          });
         console.log("click btnexecute");
       });
 

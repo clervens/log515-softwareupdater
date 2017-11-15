@@ -76,14 +76,17 @@ ul#applicationList {
   height: 32px;
   width: 32px;
   border: none;
+  display: none;
 }
 
 .appversion .versionavailable button.btndownload {
   background-image: url("../assets/img/if_Download_drive_data_data_storage_hdd_hard_to_1886949.png");
+  display: block;
 }
 
 .appversion .versionavailable button.btnexecute {
   background-image: url("../assets/img/if_Folder_folder_up_folder_upload_update_folder_upload_1886931.png");
+  display: block;
 }
 
 .appversion .versionavailable button:active, .appversion .versionavailable button:focus {
