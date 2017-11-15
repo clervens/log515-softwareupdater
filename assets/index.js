@@ -47,7 +47,7 @@ ApplicationManager.get().then((appList) => {
       ApplicationManager.getUpdateInformation(el.Name).then(function (updateInfo){
         if(updateInfo !== null && el.Version !== updateInfo.Version){
           el.updateInfo = updateInfo;
-          //TODO afficher new version
+          $(htmlList).find('li#'+el.appId+' .versionavailable span').text(el.updateInfo.Version);
           $(htmlList).find('li#'+el.appId+' .versionavailable button').addClass('btndownload');
         }
       });
@@ -120,8 +120,12 @@ ApplicationManager.get().then((appList) => {
         }
 
         var child = spawn(app.downloadInfo.destinationfilePath, []);
+        child.on('error', function(err) {
+            console.error(err);
+          });
         child.on('exit', function(code) {
             //TODO
+            console.log("installer exit" + code);
           });
         console.log("click btnexecute");
       });
