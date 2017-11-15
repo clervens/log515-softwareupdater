@@ -64,6 +64,7 @@ ApplicationManager.get().then((appList) => {
 
       $(htmlList).on('click', 'li .versionavailable button.btnexecute', (event) => {
         //todo
+        console.log("click btnexecute");
       });
 
      console.log("onclick: " + appId);

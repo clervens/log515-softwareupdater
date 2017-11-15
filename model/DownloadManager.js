@@ -9,9 +9,9 @@ module.exports = class DownloadManager {
       //todo
       if(progressFunction){
         progressFunction({
-          percent: (100.0 * dowloadedBytes / contentLenght).toFixed(2),
-          downloadedMb: (dowloadedBytes / 1048576).toFixed(2),
-          totalMb: total
+          percent: 100.00,
+          downloadedMb: null,
+          totalMb: null
         }, "Cannot download, one or some parameters are invalid")
       }
       return;
