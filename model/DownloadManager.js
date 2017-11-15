@@ -35,20 +35,23 @@ module.exports = class DownloadManager {
 
       response.on("data", function(chunk) {
           dowloadedBytes += chunk.length;
-          if(progressFunction)
+          if(progressFunction){
+            progressFunction({
+              percent: (100.0 * dowloadedBytes / contentLenght).toFixed(2),
+              downloadedMb: (dowloadedBytes / 1048576).toFixed(2),
+              totalMb: total
+            });
+          }
+        });
+
+      response.on("end", function() {
+        if(progressFunction){
           progressFunction({
             percent: (100.0 * dowloadedBytes / contentLenght).toFixed(2),
             downloadedMb: (dowloadedBytes / 1048576).toFixed(2),
             totalMb: total
           });
-        });
-
-      response.on("end", function() {
-        progressFunction({
-          percent: (100.0 * dowloadedBytes / contentLenght).toFixed(2),
-          downloadedMb: (dowloadedBytes / 1048576).toFixed(2),
-          totalMb: total
-        });
+        }
       });
 
       response.pipe(file);
