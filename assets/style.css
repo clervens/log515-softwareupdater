@@ -15,7 +15,6 @@ html {
 }
 .carret {
     position: relative;
-    padding: 12px 0;
 }
 .darwin.carret:before {
     content: "";
