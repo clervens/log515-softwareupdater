@@ -84,7 +84,7 @@ ApplicationManager.get().then((appList) => {
 
       $progress.css('display', 'block');
       //TODO remove the static url to dynamic content
-      app.downloadInfo.destinationfilePath = path.join(dowloadedAppPath, path.basename(app.downloadInfo.url));
+      app.downloadInfo.destinationfilePath = path.resolve(path.join(dowloadedAppPath, path.basename(app.downloadInfo.url)));
       DownloadManager.get(app.downloadInfo.url, app.downloadInfo.destinationfilePath, (status, error) => {
           $progressBar.css('width', `${status.percent}%`);
 
@@ -121,7 +121,7 @@ ApplicationManager.get().then((appList) => {
 
         var child = spawn(app.downloadInfo.destinationfilePath, []);
         child.on('exit', function(code) {
-            //todo
+            //TODO
           });
         console.log("click btnexecute");
       });
