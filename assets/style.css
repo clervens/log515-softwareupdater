@@ -72,11 +72,18 @@ ul#applicationList {
 /*https://www.iconfinder.com/iconsets/ios-web-user-interface-multi-circle-flat-vol-6*/
 .appversion .versionavailable button {
   background-color: transparent;
-  background-image: url("../assets/img/if_Download_drive_data_data_storage_hdd_hard_to_1886949.png");
   background-size: 32px 32px;
   height: 32px;
   width: 32px;
   border: none;
+}
+
+.appversion .versionavailable button.btndownload {
+  background-image: url("../assets/img/if_Download_drive_data_data_storage_hdd_hard_to_1886949.png");
+}
+
+.appversion .versionavailable button.btnexecute {
+  background-image: url("../assets/img/if_Folder_folder_up_folder_upload_update_folder_upload_1886931.png");
 }
 
 .appversion .versionavailable button:active, .appversion .versionavailable button:focus {

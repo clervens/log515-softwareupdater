@@ -4,13 +4,27 @@ const http = require('http'),
 
 module.exports = class DownloadManager {
 
-  static get(fileSource, destinationFilePath, progressFunction){
-    if(fileSource || destinationFilePath){
+  static get(fileSource, destinationFilePath, progressFunction = null){
+    if(!fileSource || !destinationFilePath || fs.existsSync(destinationFilePath)){
       //todo
+      if(progressFunction){
+        progressFunction({
+          percent: (100.0 * dowloadedBytes / contentLenght).toFixed(2),
+          downloadedMb: (dowloadedBytes / 1048576).toFixed(2),
+          totalMb: total
+        }, "Cannot download, one or some parameters are invalid")
+      }
+      return;
     }
-    var file = fs.createWriteStream(destinationFilePath);
+
+    let tempFile = destinationFilePath + ".tmp";
+    if(fs.existsSync(tempFile)) {
+      fs.unlinkSync(tempFile);
+    }
+    let file = fs.createWriteStream(tempFile);
     file.on('finish', function() {
-      file.close(cb);
+      file.close();
+      fs.renameSync(tempFile, destinationFilePath);
     });
 
     let request = http.get(fileSource, function(response) {

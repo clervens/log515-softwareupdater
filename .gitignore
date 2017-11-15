@@ -58,3 +58,7 @@ typings/
 .env
 
 .vscode/
+
+/package-lock.json
+/download/*
+*.msi
