@@ -133,3 +133,15 @@ ApplicationManager.get().then((appList) => {
      console.log("onclick: " + appId);
   });
 }).catch((e) => {/* On error do nothing */ console.log(e);});
+
+$(() => {
+  $("#logo").click((e) => {
+    $("#logo").rotate({
+       angle:0,
+       animateTo:360,
+       easing: function (x,t,b,c,d){        // t: current time, b: begInnIng value, c: change In value, d: duration
+           return c*(t/d)+b;
+       }
+    });
+  });
+});
