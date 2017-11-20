@@ -13,6 +13,17 @@ html {
 *::after {
     box-sizing: inherit;
 }
+
+footer {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+    font-size: .8em;
+    border-top: solid 1px rgba(154, 154, 154, 0.2)
+}
+
 .carret {
     position: relative;
 }
@@ -29,7 +40,7 @@ html {
     transform: translateX(-50%);
 }
 .page {
-    background: white;
+    background: #f8fafb;
     display: flex;
     flex-direction: column;
     width: 340px;
@@ -38,6 +49,7 @@ html {
     box-shadow: 0 5px 24px rgba(0, 0, 0, 0.7);
     overflow: hidden;
     padding: 10px;
+    position: relative;
 }
 .darwin .page {
     border-radius: 5px;
@@ -52,21 +64,31 @@ html {
 }
 
 ul#applicationList {
-  list-style-type: none;
-  padding-left: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
+    list-style-type: none;
+    padding-left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-bottom: 35px;
 }
 .appname {
-
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .appversion {
-
+    font-size: 0.9em;
+    opacity: .9;
 }
 
 .appversion .versionavailable {
   float: right;
+  margin-top: -17px;
+}
+
+.versionavailable span:first-of-type {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 /*https://www.iconfinder.com/iconsets/ios-web-user-interface-multi-circle-flat-vol-6*/
@@ -101,189 +123,189 @@ ul#applicationList {
 /*Loader*/
 
 #escapingBallG{
-	position:relative;
-	width:125px;
-	height:43px;
-	margin:auto;
+    position:relative;
+    width:125px;
+    height:43px;
+    margin:auto;
 }
 
 .escapingBallG{
-	background-color:rgb(0,0,0);
-	position:absolute;
-	top:0;
-	left:0;
-	width:43px;
-	height:43px;
-	border-radius:21px;
-		-o-border-radius:21px;
-		-ms-border-radius:21px;
-		-webkit-border-radius:21px;
-		-moz-border-radius:21px;
-	animation-name:bounce_escapingBallG;
-		-o-animation-name:bounce_escapingBallG;
-		-ms-animation-name:bounce_escapingBallG;
-		-webkit-animation-name:bounce_escapingBallG;
-		-moz-animation-name:bounce_escapingBallG;
-	animation-duration:1.5s;
-		-o-animation-duration:1.5s;
-		-ms-animation-duration:1.5s;
-		-webkit-animation-duration:1.5s;
-		-moz-animation-duration:1.5s;
-	animation-iteration-count:infinite;
-		-o-animation-iteration-count:infinite;
-		-ms-animation-iteration-count:infinite;
-		-webkit-animation-iteration-count:infinite;
-		-moz-animation-iteration-count:infinite;
-	animation-timing-function:linear;
-		-o-animation-timing-function:linear;
-		-ms-animation-timing-function:linear;
-		-webkit-animation-timing-function:linear;
-		-moz-animation-timing-function:linear;
-	animation-delay:0s;
-		-o-animation-delay:0s;
-		-ms-animation-delay:0s;
-		-webkit-animation-delay:0s;
-		-moz-animation-delay:0s;
-	transform:scale(0.5, 1);
-		-o-transform:scale(0.5, 1);
-		-ms-transform:scale(0.5, 1);
-		-webkit-transform:scale(0.5, 1);
-		-moz-transform:scale(0.5, 1);
+    background-color:rgb(0,0,0);
+    position:absolute;
+    top:0;
+    left:0;
+    width:43px;
+    height:43px;
+    border-radius:21px;
+        -o-border-radius:21px;
+        -ms-border-radius:21px;
+        -webkit-border-radius:21px;
+        -moz-border-radius:21px;
+    animation-name:bounce_escapingBallG;
+        -o-animation-name:bounce_escapingBallG;
+        -ms-animation-name:bounce_escapingBallG;
+        -webkit-animation-name:bounce_escapingBallG;
+        -moz-animation-name:bounce_escapingBallG;
+    animation-duration:1.5s;
+        -o-animation-duration:1.5s;
+        -ms-animation-duration:1.5s;
+        -webkit-animation-duration:1.5s;
+        -moz-animation-duration:1.5s;
+    animation-iteration-count:infinite;
+        -o-animation-iteration-count:infinite;
+        -ms-animation-iteration-count:infinite;
+        -webkit-animation-iteration-count:infinite;
+        -moz-animation-iteration-count:infinite;
+    animation-timing-function:linear;
+        -o-animation-timing-function:linear;
+        -ms-animation-timing-function:linear;
+        -webkit-animation-timing-function:linear;
+        -moz-animation-timing-function:linear;
+    animation-delay:0s;
+        -o-animation-delay:0s;
+        -ms-animation-delay:0s;
+        -webkit-animation-delay:0s;
+        -moz-animation-delay:0s;
+    transform:scale(0.5, 1);
+        -o-transform:scale(0.5, 1);
+        -ms-transform:scale(0.5, 1);
+        -webkit-transform:scale(0.5, 1);
+        -moz-transform:scale(0.5, 1);
 }
 
 
 
 @keyframes bounce_escapingBallG{
-	0%{
-		left:0px;
-		transform:scale(0.5, 1);
-	}
+    0%{
+        left:0px;
+        transform:scale(0.5, 1);
+    }
 
-	25%{
-		left:41px;
-		transform:scale(1, 0.5);
-	}
+    25%{
+        left:41px;
+        transform:scale(1, 0.5);
+    }
 
-	50%{
-		left:103px;
-		transform:scale(0.5, 1);
-	}
+    50%{
+        left:103px;
+        transform:scale(0.5, 1);
+    }
 
-	75%{
-		left:41px;
-		transform:scale(1, 0.5);
-	}
+    75%{
+        left:41px;
+        transform:scale(1, 0.5);
+    }
 
-	100%{
-		left:0px;
-		transform:scale(0.5, 1);
-	}
+    100%{
+        left:0px;
+        transform:scale(0.5, 1);
+    }
 }
 
 @-o-keyframes bounce_escapingBallG{
-	0%{
-		left:0px;
-		-o-transform:scale(0.5, 1);
-	}
+    0%{
+        left:0px;
+        -o-transform:scale(0.5, 1);
+    }
 
-	25%{
-		left:41px;
-		-o-transform:scale(1, 0.5);
-	}
+    25%{
+        left:41px;
+        -o-transform:scale(1, 0.5);
+    }
 
-	50%{
-		left:103px;
-		-o-transform:scale(0.5, 1);
-	}
+    50%{
+        left:103px;
+        -o-transform:scale(0.5, 1);
+    }
 
-	75%{
-		left:41px;
-		-o-transform:scale(1, 0.5);
-	}
+    75%{
+        left:41px;
+        -o-transform:scale(1, 0.5);
+    }
 
-	100%{
-		left:0px;
-		-o-transform:scale(0.5, 1);
-	}
+    100%{
+        left:0px;
+        -o-transform:scale(0.5, 1);
+    }
 }
 
 @-ms-keyframes bounce_escapingBallG{
-	0%{
-		left:0px;
-		-ms-transform:scale(0.5, 1);
-	}
+    0%{
+        left:0px;
+        -ms-transform:scale(0.5, 1);
+    }
 
-	25%{
-		left:41px;
-		-ms-transform:scale(1, 0.5);
-	}
+    25%{
+        left:41px;
+        -ms-transform:scale(1, 0.5);
+    }
 
-	50%{
-		left:103px;
-		-ms-transform:scale(0.5, 1);
-	}
+    50%{
+        left:103px;
+        -ms-transform:scale(0.5, 1);
+    }
 
-	75%{
-		left:41px;
-		-ms-transform:scale(1, 0.5);
-	}
+    75%{
+        left:41px;
+        -ms-transform:scale(1, 0.5);
+    }
 
-	100%{
-		left:0px;
-		-ms-transform:scale(0.5, 1);
-	}
+    100%{
+        left:0px;
+        -ms-transform:scale(0.5, 1);
+    }
 }
 
 @-webkit-keyframes bounce_escapingBallG{
-	0%{
-		left:0px;
-		-webkit-transform:scale(0.5, 1);
-	}
+    0%{
+        left:0px;
+        -webkit-transform:scale(0.5, 1);
+    }
 
-	25%{
-		left:41px;
-		-webkit-transform:scale(1, 0.5);
-	}
+    25%{
+        left:41px;
+        -webkit-transform:scale(1, 0.5);
+    }
 
-	50%{
-		left:103px;
-		-webkit-transform:scale(0.5, 1);
-	}
+    50%{
+        left:103px;
+        -webkit-transform:scale(0.5, 1);
+    }
 
-	75%{
-		left:41px;
-		-webkit-transform:scale(1, 0.5);
-	}
+    75%{
+        left:41px;
+        -webkit-transform:scale(1, 0.5);
+    }
 
-	100%{
-		left:0px;
-		-webkit-transform:scale(0.5, 1);
-	}
+    100%{
+        left:0px;
+        -webkit-transform:scale(0.5, 1);
+    }
 }
 
 @-moz-keyframes bounce_escapingBallG{
-	0%{
-		left:0px;
-		-moz-transform:scale(0.5, 1);
-	}
+    0%{
+        left:0px;
+        -moz-transform:scale(0.5, 1);
+    }
 
-	25%{
-		left:41px;
-		-moz-transform:scale(1, 0.5);
-	}
+    25%{
+        left:41px;
+        -moz-transform:scale(1, 0.5);
+    }
 
-	50%{
-		left:103px;
-		-moz-transform:scale(0.5, 1);
-	}
+    50%{
+        left:103px;
+        -moz-transform:scale(0.5, 1);
+    }
 
-	75%{
-		left:41px;
-		-moz-transform:scale(1, 0.5);
-	}
+    75%{
+        left:41px;
+        -moz-transform:scale(1, 0.5);
+    }
 
-	100%{
-		left:0px;
-		-moz-transform:scale(0.5, 1);
-	}
+    100%{
+        left:0px;
+        -moz-transform:scale(0.5, 1);
+    }
 }
