@@ -44,11 +44,13 @@ ApplicationManager.get().then((appList) => {
       $(htmlList).append(appItem);
 
       //Show item only if new version if available
-      ApplicationManager.getUpdateInformation(el.Name).then(function (updateInfo){
-        if(updateInfo !== null && el.Version !== updateInfo.Version){
-          el.updateInfo = updateInfo;
-          $(htmlList).find('li#'+el.appId+' .versionavailable span').text(el.updateInfo.Version);
-          $(htmlList).find('li#'+el.appId+' .versionavailable button').addClass('btndownload');
+      ApplicationManager.getUpdateInformation(el.Name).then((updateInfo) => {
+        if(updateInfo !== null && el.Version !== updateInfo.Version) {
+          let $listItem = $(htmlList).find('li#'+el.appId);
+
+          $listItem.find('.versionavailable span').text(updateInfo.Version);
+          $listItem.find('.versionavailable button').addClass('btndownload');
+          $listItem.addClass('list-group-item-info');
         }
       });
   }
