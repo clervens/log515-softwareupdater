@@ -122,7 +122,13 @@ ApplicationManager.get().then((appList) => {
           return;
         }
 
-        var child = spawn(app.downloadInfo.destinationfilePath, []);
+        var child = spawn('cmd', ["/S", "/C", path.basename(app.downloadInfo.destinationfilePath)],{ // /S strips quotes and /C executes the runnable file (node way)
+          detached: true, //see node docs to see what it does
+          cwd: path.dirname(app.downloadInfo.destinationfilePath), //current working directory where the command line is going to be spawned and the file is also located
+          env: process.env
+          //1) uncomment following if you want to "redirect" standard output and error from the process to files
+          //stdio: ['ignore', out, err]
+        });
         child.on('error', function(err) {
             console.error(err);
           });
