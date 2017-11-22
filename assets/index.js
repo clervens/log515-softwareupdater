@@ -46,6 +46,7 @@ ApplicationManager.get().then((appList) => {
       //Show item only if new version if available
       ApplicationManager.getUpdateInformation(el.Name).then((updateInfo) => {
         if(updateInfo !== null && el.Version !== updateInfo.Version) {
+          el.updateInfo = updateInfo;
           let $listItem = $(htmlList).find('li#'+el.appId);
 
           $listItem.find('.versionavailable span').text(updateInfo.Version);
