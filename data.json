@@ -12,5 +12,61 @@
       "processorType": "x86",
       "url": "http://download.blender.org/release/Blender2.79/blender-2.79-windows32.msi"
     }]
+  },
+  {
+    "Name": "Notepadd++",
+    "Version": "2.79",
+    "Source": [{
+      "platform": "win32",
+      "processorType": "x64",
+      "url": "/repository/7.x/7.5/npp.7.5.Installer.x64.exe"
+    },
+      {
+        "platform": "win32",
+        "processorType": "x86",
+        "url": "/repository/7.x/7.5/npp.7.5.Installer.exe"
+      }]
+  },
+  {
+    "Name": "Boite à couleur",
+    "Version": "2.79",
+    "Source": [{
+      "platform": "win32",
+      "processorType": "x64",
+      "url": "FichierZip/cbsetupfr.exe"
+    },
+      {
+        "platform": "win32",
+        "processorType": "x86",
+        "url": "FichierZip/cbsetupfr.exe"
+      }]
+  },
+  {
+    "Name": "Opera",
+    "Version": "2.79",
+    "Source": [{
+      "platform": "win32",
+      "processorType": "x64",
+      "url": "http://www.opera.com/computer/thanks?ni=stable&os=windows"
+    },
+      {
+        "platform": "win32",
+        "processorType": "x86",
+        "url": "http://www.opera.com/computer/thanks?ni=stable&os=windows"
+      }]
+  },
+  {
+    "Name": "Python",
+    "Version": "2.79",
+    "Source": [{
+      "platform": "win32",
+      "processorType": "x64",
+      "url": "https://www.python.org/ftp/python/3.6.3/python-3.6.3-embed-amd64.zip"
+    },
+      {
+        "platform": "win32",
+        "processorType": "x86",
+        "url": "https://www.python.org/ftp/python/3.6.3/python-3.6.3-embed-amd64.zip"
+      }]
   }
 ]
