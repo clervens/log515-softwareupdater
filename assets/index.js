@@ -121,7 +121,7 @@ ApplicationManager.get().then((appList) => {
           $(event.target).prop("disabled",false);
           return;
         }
-        
+
         //https://stackoverflow.com/questions/35365332/run-msi-package-from-nodejs-app
         var child = spawn('cmd', ["/S", "/C", path.basename(app.downloadInfo.destinationfilePath)],{ // /S strips quotes and /C executes the runnable file (node way)
           detached: true, //see node docs to see what it does
@@ -137,14 +137,13 @@ ApplicationManager.get().then((appList) => {
             //TODO
             console.log("installer exit" + code);
           });
+          // THIS IS TAKEN FROM NODE JS DOCS
+          // By default, the parent will wait for the detached child to exit.
+          // To prevent the parent from waiting for a given child, use the child.unref() method,
+          // and the parent's event loop will not include the child in its reference count.
+          child.unref();
         console.log("click btnexecute");
       });
-
-      // THIS IS TAKEN FROM NODE JS DOCS
-      // By default, the parent will wait for the detached child to exit.
-      // To prevent the parent from waiting for a given child, use the child.unref() method,
-      // and the parent's event loop will not include the child in its reference count.
-      child.unref();
      console.log("onclick: " + appId);
   });
 }).catch((e) => {/* On error do nothing */ console.log(e);});
